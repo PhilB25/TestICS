@@ -58,7 +58,7 @@ function Listplace() {
           console.log(data[0])
       }, []);
   return (
-    <Stack>
+    <Stack spacing={1}>
         <Stack direction="row" sx={{justifyContent:"space-between"}}>
             <Box sx={{fontSize:48 ,color:"#000000"}}>Place</Box>
             <Box sx={{display:"flex"}}>
@@ -66,7 +66,7 @@ function Listplace() {
         disablePortal
         id="combo-box-demo"
         options={options}
-        sx={{ width: 100,height:5 }}
+        sx={{ width: 185,height:5 }}
         renderInput={(params) => <TextField {...params} />}
         onChange={handleChangeoption}
       />
@@ -76,6 +76,7 @@ function Listplace() {
           id="outlined-multiline-flexible"
           label="Sreach"
           onChange={handleSearchChange}
+          sx={{width:400,height:40,borderRadius:"10 10 10 10"}}
         />
             </Box>
             
