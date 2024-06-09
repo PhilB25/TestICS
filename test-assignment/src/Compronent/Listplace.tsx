@@ -1,14 +1,12 @@
 
-import { Box, Button, Grid, Stack,Pagination,Divider} from '@mui/material';
+import { Box,  Grid, Stack,Pagination} from '@mui/material';
 import { useState, useEffect } from 'react'
-import ImageList from '@mui/material/ImageList';
-import ImageListItem from '@mui/material/ImageListItem';
-import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
-import CircleIcon from '@mui/icons-material/Circle';
 import '/src/CSS/TextStyle.css';
 import TextField from '@mui/material/TextField';
 import Autocomplete from '@mui/material/Autocomplete';
 import { useMediaQuery } from '@mui/material';
+import Carddt from './Carddt.tsx';
+import Cardmb from './Cardmb.tsx';
 
 function Listplace() {
     interface Data {
@@ -23,7 +21,6 @@ function Listplace() {
       }
       const isScreenSmall = useMediaQuery('(max-width:480px)');
       const directionType: string = isScreenSmall ? "column" : "row";
-      const displaySet: string = isScreenSmall ? "flex" : "flow";
       const options = ["restaurant", "cafe", "bakery"];
       const [data, setData] = useState<Data[]>([]);
       const [currentPage, setCurrentPage] = useState(1);
@@ -58,14 +55,13 @@ function Listplace() {
           .then(response => response.json())
           .then(data => setData(data))
           .catch(error => console.error('Error fetching data:', error));
-          console.log(data[0])
       }, []);
   return (
     <Stack spacing={1}>
         <Stack direction={`${directionType}`} sx={{justifyContent:"space-between"}}>
             <Box sx={{fontSize:36 ,color:"#000000"}}>Place List</Box>
             {!isScreenSmall && (
-  <Box sx={{display:"flex", gap:1}}>
+  <Box sx={{display:"flex", gap:2}}>
   <Autocomplete
               disablePortal
               id="combo-box-demo"
@@ -78,7 +74,7 @@ function Listplace() {
               id="outlined-multiline-flexible"
               label="Sreach"
               onChange={handleSearchChange}
-              sx={{width:"100%",height:40}}
+              sx={{width:400,height:40,right:10}}
               />
                 </Box>)}
                 {isScreenSmall && (
@@ -104,43 +100,8 @@ function Listplace() {
         <Grid container spacing={2} >
         {currentItems.map(item => (
         <Grid item xs={12} sm={6} md={4} key={item.id}>
-           <Button sx={{width:"100%",height:225, borderRadius:'20px 20px 20px 20px',bgcolor:"#FFFFFF",boxShadow: '0px 4px 6px rgba(0, 0, 0, 0.1)',}}>
-            <Stack direction="column">
-            <Stack direction="row" gap={2}>
-            <img src={item.profile_image_url} alt="Button Image" style={{ width: 53, height: 53,borderRadius: 10}} />
-            <Stack direction="column">
-            <Box sx={{color:"#000000",fontSize:20}}>{item.name}</Box>
-            <Stack direction="row"  justifyContent="space-between">
-            <Box sx={{color:"#000000",fontSize:15,width:"100%"}} >
-                <Stack direction="row">
-                <CalendarMonthIcon/>
-                {item.operation_time[0].time_open} - {item.operation_time[0].time_close}
-                </Stack>
-                </Box> 
-            <Box sx={{color:"#134B8A",fontSize:15}} >
-            <Stack direction="row">
-                <CircleIcon/>
-                {item.rating}
-                </Stack>
-                </Box> 
-            </Stack>
-            </Stack>
-            
-            </Stack>
-            <ImageList sx={{ width: "100%", height: 120 }} cols={3}>
-      {item.images.map((item) => (
-        <ImageListItem key={item}>
-          <img
-            srcSet={`${item}`}
-            src={`${item}`}
-            loading="lazy"
-            style={{ width: "100%", height: 120}}
-          />
-        </ImageListItem>
-      ))}
-    </ImageList>
-            </Stack>
-           </Button> 
+          {isScreenSmall&&(<Cardmb data={item}/>)}
+          {!isScreenSmall&&(<Carddt data={item}/>)}
            </Grid>
           
         ))}

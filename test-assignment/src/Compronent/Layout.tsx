@@ -1,14 +1,13 @@
 
 import AppBar from '@mui/material/AppBar';
-import AccountButton from './AccountButton';
+import AccountButton from './AccountButton.tsx';
 import {Stack,Box} from '@mui/material';
 import Notification from './Notification';
 import Bar from './Bar';
-import Listplace from './Listplace';
 import { useMediaQuery } from '@mui/material';
-function Layout() {
+function Layout({content}) {
   const isScreenSmall = useMediaQuery('(max-width:480px)');
-  const marginValue: number = isScreenSmall ? 10 : 112;
+  const marginValue: number = isScreenSmall ? 0 : 112;
   return (
   <AppBar position="static" sx={{ bgcolor: "#134B8A", height: 60, position: 'relative',justifyContent:"center"}}>
     {isScreenSmall && (
@@ -27,8 +26,8 @@ function Layout() {
   <Box sx={{ position: 'absolute', top: 0, left: 0, bgcolor: "#FFFFFF", width: 90, height: 1456,borderRadius: '0 50px 50px 0 ' ,boxShadow:"inherit"}}>
     <Bar/>
   </Box>)}
-  <Box sx={{ position: 'absolute', top: 88, left: marginValue,right:10,  height:1456}}>
-    <Listplace/>
+  <Box sx={{ position: 'absolute', top: 88, left: marginValue,  height:1456}}>
+    {content}
   </Box>
 </AppBar>
        
