@@ -5,6 +5,7 @@ import './App.css'
 import Layout from './Compronent/Layout.tsx'
 import Listplace from './Compronent/Listplace';
 import Detailpc from './Compronent/Detailpc';
+import Detailmb from './Compronent/Detailmb';
 
 function App() {
   //const [count, setCount] = useState(0)

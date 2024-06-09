@@ -1,5 +1,5 @@
-import React from 'react'
-import { Box, Button, Stack } from '@mui/material';
+import React from 'react';
+import { Box, Button, Stack,ButtonGroup } from '@mui/material';
 import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
@@ -8,9 +8,9 @@ import Typography from '@mui/material/Typography';
 import { CardActionArea} from '@mui/material';
 import ImageList from '@mui/material/ImageList';
 import ImageListItem from '@mui/material/ImageListItem';
-import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
+import { useState, useEffect } from 'react'
 
-function Detailpc() {
+function Detailmb() {
     const data ={
         "id": 9842,
         "name": "Bistro Bazaar",
@@ -63,16 +63,32 @@ function Detailpc() {
         "address": "180 Soi Sensuk Phrachasongkro Din Daeng Din Daeng, Bangkok",
         "rating": 4.1
     }
+    const [isImage, setisImage] = useState(false);
+    const [informationVariant, setinformationVariant] = useState("contained");
+    const [imageVariant, setimageVariant] = useState("text");
+    const handleClickInformation = (event: React.MouseEvent<HTMLElement>) => {
+        setisImage(false);
+        setinformationVariant("contained");
+        setimageVariant("text");
+      };
+      const handleClickImage = (event: React.MouseEvent<HTMLElement>) => {
+        setisImage(true);
+        setinformationVariant("text");
+        setimageVariant("contained");
+      };
   return (
-    <Stack direction="column" sx={{width:"100%"}}>
-        <Button sx={{bgcolor:"#134B8A",borderRadius:"20px 20px 20px 20px",width:90,margin:2}}>
+    <Stack direction="column" sx={{width:"100%"}} spacing={1}>
+        <Button sx={{bgcolor:"#134B8A",borderRadius:"20px 20px 20px 20px",width:90}}>
             <Stack direction="row">
                 <ArrowBackIosNewIcon />
                 BACK
             </Stack>
         </Button>
-        <Box sx={{top: 88,bgcolor:"#C4D3E9", padding:5, display:"flex", gap:5, marginLeft:10,borderRadius:"10px 10px 10px 10px"}}>
-        <Card sx={{ width:"100%"}}>
+        <Box  sx={{width:"100%" ,borderRadius:"30px 30px 30px 30px",boxShadow:"inherit",display:"flex"}}>
+  <Button onClick={handleClickInformation} sx={{width:"100%",borderRadius:"30px 30px 30px 30px"}} variant={informationVariant}>Information</Button>
+  <Button onClick={handleClickImage} sx={{width:"100%",borderRadius:"30px 30px 30px 30px" }} variant={imageVariant}>Image</Button>
+</Box>
+        {!isImage&&(<Card sx={{ width:"100%"}}>
       <CardActionArea>
         <CardMedia
           component="img"
@@ -100,8 +116,8 @@ function Detailpc() {
                             </Typography>
                             </CardContent>
                         </CardActionArea>
-                        </Card>
-                        <Box sx={{bgcolor:"#FFFFFF", width:"100%",padding:5,borderRadius:"10px 10px 10px 10px"}} >
+                        </Card>)}
+                        {isImage&&(<Box sx={{bgcolor:"#FFFFFF", width:"100%",borderRadius:"10px 10px 10px 10px"}} >
                             <Box sx={{fontSize:38 , color:"#000000"}}>
                                 Image
                             </Box>
@@ -126,12 +142,10 @@ function Detailpc() {
         </ImageListItem>
       ))}
     </ImageList>
-                        </Box>
-        </Box>
+                        </Box>)}
         
     </Stack>
-    
   )
 }
 
-export default Detailpc
+export default Detailmb
