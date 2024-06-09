@@ -9,6 +9,7 @@ import { CardActionArea} from '@mui/material';
 import ImageList from '@mui/material/ImageList';
 import ImageListItem from '@mui/material/ImageListItem';
 import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
+import { Link } from 'react-router-dom';
 
 function Detailpc() {
     const data ={
@@ -65,12 +66,15 @@ function Detailpc() {
     }
   return (
     <Stack direction="column" sx={{width:"100%"}}>
+        <Link to={'/'}>
         <Button sx={{bgcolor:"#134B8A",borderRadius:"20px 20px 20px 20px",width:90,margin:2}}>
             <Stack direction="row">
                 <ArrowBackIosNewIcon />
                 BACK
             </Stack>
         </Button>
+        </Link>
+        
         <Box sx={{top: 88,bgcolor:"#C4D3E9", padding:5, display:"flex", gap:5, marginLeft:10,borderRadius:"10px 10px 10px 10px"}}>
         <Card sx={{ width:"100%"}}>
       <CardActionArea>

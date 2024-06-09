@@ -5,6 +5,7 @@ import Autocomplete from '@mui/material/Autocomplete';
 import { useMediaQuery } from '@mui/material';
 import Carddt from './Carddt.tsx';
 import Cardmb from './Cardmb.tsx';
+import { Link } from 'react-router-dom';
 
 interface Data {
   id: number;
@@ -98,8 +99,11 @@ const Listplace: React.FC = () => {
       <Grid container spacing={2} >
         {currentItems.map(item => (
           <Grid item xs={12} sm={6} md={4} key={item.id}>
+            <Link to={'/detail'}>
             {isScreenSmall && (<Cardmb data={item} />)}
             {!isScreenSmall && (<Carddt data={item} />)}
+            </Link>
+            
           </Grid>
 
         ))}

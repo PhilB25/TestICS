@@ -4,14 +4,23 @@
 import './App.css'
 import Layout from './Compronent/Layout.tsx'
 import Listplace from './Compronent/Listplace';
+import Detail from './Compronent/Detail.tsx';
 import Detailpc from './Compronent/Detailpc';
 import Detailmb from './Compronent/Detailmb';
 
+import { BrowserRouter ,Routes,Route } from 'react-router-dom';
 function App() {
   //const [count, setCount] = useState(0)
   
   return (
-      <Layout content={<Listplace/>}/>
+    <BrowserRouter>
+    <Routes>
+    <Route path="/" element={<Layout content={<Listplace/>}/>} />
+    <Route path="/detail" element={<Detail/>} />
+    </Routes>
+     
+
+    </BrowserRouter>
   )
 }
 

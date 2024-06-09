@@ -9,6 +9,7 @@ import { CardActionArea} from '@mui/material';
 import ImageList from '@mui/material/ImageList';
 import ImageListItem from '@mui/material/ImageListItem';
 import { useState, useEffect } from 'react'
+import { Link } from 'react-router-dom';
 
 function Detailmb() {
     const data ={
@@ -78,12 +79,14 @@ function Detailmb() {
       };
   return (
     <Stack direction="column" sx={{width:"100%"}} spacing={1}>
-        <Button sx={{bgcolor:"#134B8A",borderRadius:"20px 20px 20px 20px",width:90}}>
+        <Link to={'/'}>
+        <Button sx={{bgcolor:"#134B8A",borderRadius:"20px 20px 20px 20px",width:90,margin:2}}>
             <Stack direction="row">
                 <ArrowBackIosNewIcon />
                 BACK
             </Stack>
         </Button>
+        </Link>
         <Box  sx={{width:"100%" ,borderRadius:"30px 30px 30px 30px",boxShadow:"inherit",display:"flex"}}>
   <Button onClick={handleClickInformation} sx={{width:"100%",borderRadius:"30px 30px 30px 30px"}} variant={informationVariant}>Information</Button>
   <Button onClick={handleClickImage} sx={{width:"100%",borderRadius:"30px 30px 30px 30px" }} variant={imageVariant}>Image</Button>
