@@ -65,14 +65,13 @@ function Detailpc() {
     }
   return (
     <Stack direction="column">
-        <Button sx={{bgcolor:"#134B8A",borderRadius:"20px 20px 20px 20px",width:90}}>
+        <Button sx={{bgcolor:"#134B8A",borderRadius:"20px 20px 20px 20px",width:90,margin:5}}>
             <Stack direction="row">
                 <ArrowBackIosNewIcon />
                 BACK
             </Stack>
         </Button>
-        <Box sx={{top: 88,  height:1456 ,bgcolor:"#C4D3E9", padding:5}}>
-        <Stack direction="row">
+        <Box sx={{top: 88,bgcolor:"#C4D3E9", padding:5, display:"flex", gap:5, marginLeft:10}}>
         <Card sx={{ width: 677}}>
       <CardActionArea>
         <CardMedia
@@ -102,8 +101,30 @@ function Detailpc() {
                             </CardContent>
                         </CardActionArea>
                         </Card>
-            </Stack>
+                        <Box>
+                        <ImageList sx={{  width: 548,
+    height: 1084,
+    overflowX: "auto", 
+    scrollSnapType: "y mandatory", 
+    scrollbarWidth: "none", 
+    msOverflowStyle: "none", 
+    "&::-webkit-scrollbar": {
+      display: "none" 
+    } }} cols={1}>
+      {data.images.map((item) => (
+        <ImageListItem key={item}>
+          <img
+            srcSet={`${item}`}
+            src={`${item}`}
+            loading="lazy"
+            style={{ width: "100%", height: 318,border:"10px 10px 10px 10px"}}
+          />
+        </ImageListItem>
+      ))}
+    </ImageList>
+                        </Box>
         </Box>
+        
     </Stack>
     
   )

@@ -10,7 +10,7 @@ function App() {
   //const [count, setCount] = useState(0)
   
   return (
-      <Layout content={<Detailpc/>}/>
+      <Layout content={<Listplace/>}/>
   )
 }
 
