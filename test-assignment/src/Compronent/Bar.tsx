@@ -19,7 +19,6 @@ function Bar() {
             <Box sx={{width:36,height:36,justifyContent:"center",alignItems:"center",textAlign:"center",color:"#000000"}}>
             place
             </Box>
-            
          </Stack>
         </MenuItem>
         <Divider />

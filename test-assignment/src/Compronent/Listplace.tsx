@@ -8,7 +8,7 @@ import CircleIcon from '@mui/icons-material/Circle';
 import '/src/CSS/TextStyle.css';
 import TextField from '@mui/material/TextField';
 import Autocomplete from '@mui/material/Autocomplete';
-
+import { useMediaQuery } from '@mui/material';
 
 function Listplace() {
     interface Data {
@@ -21,6 +21,9 @@ function Listplace() {
         address:string;
         rating:number;
       }
+      const isScreenSmall = useMediaQuery('(max-width:480px)');
+      const directionType: string = isScreenSmall ? "column" : "row";
+      const displaySet: string = isScreenSmall ? "flex" : "flow";
       const options = ["restaurant", "cafe", "bakery"];
       const [data, setData] = useState<Data[]>([]);
       const [currentPage, setCurrentPage] = useState(1);
@@ -59,27 +62,44 @@ function Listplace() {
       }, []);
   return (
     <Stack spacing={1}>
-        <Stack direction="row" sx={{justifyContent:"space-between"}}>
-            <Box sx={{fontSize:48 ,color:"#000000"}}>Place</Box>
-            <Box sx={{display:"flex"}}>
-            <Autocomplete
-        disablePortal
-        id="combo-box-demo"
-        options={options}
-        sx={{ width: 185,height:5 }}
-        renderInput={(params) => <TextField {...params} />}
-        onChange={handleChangeoption}
-      />
-      <Divider />
-      |
-      <TextField
-          id="outlined-multiline-flexible"
-          label="Sreach"
-          onChange={handleSearchChange}
-          sx={{width:400,height:40,borderRadius:"10 10 10 10"}}
-        />
-            </Box>
-            
+        <Stack direction={`${directionType}`} sx={{justifyContent:"space-between"}}>
+            <Box sx={{fontSize:36 ,color:"#000000"}}>Place List</Box>
+            {!isScreenSmall && (
+  <Box sx={{display:"flex", gap:1}}>
+  <Autocomplete
+              disablePortal
+              id="combo-box-demo"
+              options={options}
+              sx={{ width:185 }}
+              renderInput={(params) => <TextField {...params} />}
+              onChange={handleChangeoption}
+              /> 
+              <TextField
+              id="outlined-multiline-flexible"
+              label="Sreach"
+              onChange={handleSearchChange}
+              sx={{width:"100%",height:40}}
+              />
+                </Box>)}
+                {isScreenSmall && (
+                <Box sx={{display:"flow"}}>
+                <Autocomplete
+              disablePortal
+              id="combo-box-demo"
+              options={options}
+              sx={{ width:"100%" }}
+              renderInput={(params) => <TextField {...params} />}
+              onChange={handleChangeoption}
+              /> 
+              <TextField
+              id="outlined-multiline-flexible"
+              label="Sreach"
+              onChange={handleSearchChange}
+              sx={{width:"100%",height:40,borderRadius:"10 10 10 10"}}
+              />
+                </Box>)}
+                          
+        
         </Stack>
         <Grid container spacing={2} >
         {currentItems.map(item => (
