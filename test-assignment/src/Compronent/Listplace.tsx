@@ -50,7 +50,6 @@ const Listplace: React.FC = () => {
   const currentItems = filteredData.slice(startIndex, endIndex);
 
   useEffect(() => {
-    // อ่านข้อมูลจากไฟล์ JSON
     fetch('./src/DataSet/example_data.json')
       .then(response => response.json())
       .then((data: Data[]) => setData(data))
